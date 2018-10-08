@@ -9,4 +9,6 @@ public interface BaseController<T> {
     public List<T> delete(Long id);
 
     public T get(Long id);
+
+
 }

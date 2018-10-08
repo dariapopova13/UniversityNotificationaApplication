@@ -18,15 +18,11 @@ public class Event extends AbstractEntity {
 
     @Column(name = "event_text")
     @Lob
-//    @Field(index = Index.YES, store = Store.YES, analyze = Analyze.YES,
-//            analyzer = @Analyzer(definition = "customanalyzer"))
     private String text;
     @Column(name = "event_date")
     private Date date;
     @Lob
     @Column(name = "event_title")
-//    @Field(index = Index.YES, store = Store.YES, analyze = Analyze.YES,
-//            analyzer = @Analyzer(definition = "customanalyzer"))
     private String title;
     @OneToMany(mappedBy = "event", fetch = FetchType.EAGER)
     private Set<Document> documents= new HashSet<>();

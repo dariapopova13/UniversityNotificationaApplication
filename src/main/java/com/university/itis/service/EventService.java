@@ -12,4 +12,6 @@ public interface EventService extends BaseService<EventDto> {
     List<EventDto> getAllByUser(String date);
 
     List<EventDto> getAllByUser();
+
+    List<EventDto> getAllByGroupsId(List<Long> groupsId);
 }

@@ -71,8 +71,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .httpBasic().authenticationEntryPoint(restAuthenticationEntryPoint).and()
                 .authorizeRequests()
+                .antMatchers("/student/api/*").permitAll()
+                .antMatchers("/").permitAll()
                 .antMatchers("/api/*").authenticated()
-                .anyRequest().permitAll()
 
                 .and().logout().permitAll()
                 .logoutSuccessHandler(restLogoutSuccessHandler).addLogoutHandler(restLogoutHandler)
@@ -103,5 +104,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder authenticationMgr) throws Exception {
         authenticationMgr.userDetailsService(userService).passwordEncoder(passwordEncoder);
     }
-
 }

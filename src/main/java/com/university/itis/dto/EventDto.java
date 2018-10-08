@@ -16,7 +16,7 @@ public class EventDto extends AbstractDto {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date date;
     private String title;
-    private SimpleGroupDto group;
+    private GroupDto group;
     private List<DocumentDto> documents;
 
     public EventDto() {
@@ -28,7 +28,7 @@ public class EventDto extends AbstractDto {
         this.date = event.getDate();
         this.title = event.getTitle();
         if (event.getGroup() != null) {
-            this.group = new SimpleGroupDto(event.getGroup());
+            this.group = new GroupDto(event.getGroup());
         }
         this.documents = event.getDocuments().stream()
                 .map(DocumentDto::new).collect(Collectors.toList());
@@ -58,11 +58,11 @@ public class EventDto extends AbstractDto {
         this.title = title;
     }
 
-    public SimpleGroupDto getGroup() {
+    public GroupDto getGroup() {
         return group;
     }
 
-    public void setGroup(SimpleGroupDto group) {
+    public void setGroup(GroupDto group) {
         this.group = group;
     }
 

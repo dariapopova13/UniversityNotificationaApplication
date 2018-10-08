@@ -6,11 +6,11 @@
     <meta http-equiv=X-UA-Compatible content="IE=edge">
     <meta name=viewport content="width=device-width,initial-scale=1">
     <link rel="shortcut icon" href=/favicon.ico>
-    <title>Itis App</title>
-    <link rel=preload as=script href=/js/vendor.c7fb8bee.js>
-    <link rel=preload as=script href=/js/app.f9ec03f6.js>
-    <link rel=preload as=style href=/css/app.f84c4742.css>
-    <link href=/css/app.f84c4742.css rel=stylesheet>
+    <title>vue-frontend</title>
+    <link rel=preload as=script href=/js/vendor.327e5b77.js>
+    <link rel=preload as=script href=/js/app.4829b25e.js>
+    <link rel=preload as=style href=/css/app.6c96c053.css>
+    <link href=/css/app.6c96c053.css rel=stylesheet>
 </head>
 <body>
 <noscript><strong>We're sorry but vue-frontend doesn't work properly without JavaScript enabled. Please enable it to
@@ -50,7 +50,7 @@
     }
 })([]);
 //# sourceMappingURL=/js/manifest.bb41d6d8.js.map</script>
-<script type=text/javascript src=/js/vendor.c7fb8bee.js></script>
-<script type=text/javascript src=/js/app.f9ec03f6.js></script>
+<script type=text/javascript src=/js/vendor.327e5b77.js></script>
+<script type=text/javascript src=/js/app.4829b25e.js></script>
 </body>
 </html>

@@ -10,6 +10,7 @@ import com.university.itis.service.UserService;
 import com.university.itis.utils.DtoUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,21 +34,20 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public GroupDto saveOrUdpate(GroupDto groupDto) {
         Group group = dtoUtils.toEntity((GroupDto) groupDto);
-//        group.setUser(userService.getCurrentUser());
-        User user
-        group.setUser();
+        group.setUser(userService.getCurrentUser());
         group = groupRepository.save(group);
         return group == null ? null : new GroupDto(group);
     }
 
     @Override
+    @Transactional
     public List<GroupDto> delete(Long id) {
-//        deleteReferences(id);
+        deleteReferences(id);
         groupRepository.delete(id);
         return getAllByUser();
     }
 
-    private void deleteReferences(Long id){
+    private void deleteReferences(Long id) {
         List<Group> children = groupRepository.findAllByParentId(id);
         for (Group child : children) {
             child.setParent(null);

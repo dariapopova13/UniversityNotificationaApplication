@@ -1,6 +1,8 @@
 package com.university.itis.service.impl;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.university.itis.dto.EventDto;
+import com.university.itis.firebase.FirebaseService;
 import com.university.itis.model.Event;
 import com.university.itis.model.Role;
 import com.university.itis.model.User;
@@ -31,6 +33,8 @@ public class EventServiceImpl implements EventService {
     private GroupRepository groupRepository;
     @Autowired
     private DateUtils dateUtils;
+    @Autowired
+    private FirebaseService firebaseService;
 
     @Override
     public EventDto get(Long id) {
@@ -42,7 +46,16 @@ public class EventServiceImpl implements EventService {
     public EventDto saveOrUdpate(EventDto eventDto) {
         Event event = dtoUtils.toEntity(eventDto);
         event = eventRepository.save(event);
-        return event == null ? null : new EventDto(event);
+        if (event != null) {
+            EventDto dto = new EventDto(event);
+            try {
+                firebaseService.notifyEvent(dto);
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+            return dto;
+        }
+        return null;
     }
 
     @Override
@@ -93,5 +106,13 @@ public class EventServiceImpl implements EventService {
                     .map(EventDto::new)
                     .collect(Collectors.toList());
         }
+    }
+
+    @Override
+    public List<EventDto> getAllByGroupsId(List<Long> groupsId) {
+        return eventRepository.findAllByGroupIdInOrderByDateAsc(groupsId)
+                .stream()
+                .map(EventDto::new)
+                .collect(Collectors.toList());
     }
 }

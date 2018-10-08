@@ -15,9 +15,6 @@ import java.util.List;
 @Repository
 public interface EventRepository extends JpaRepository<Event, Long> {
 
-    List<Event> findAllByGroupIdInOrderByDateAsc(List<Long> courseIds);
-
-
 //    @Query(value = "SELECT n FROM Event n WHERE n.date between ?1 and ?2 " +
 //            "and (n.group.id in ?3) order by n.deadline asc ")
 //    List<News> getNews(Date begin, Date end, List<Long> courseIds, Integer year);
@@ -33,4 +30,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
                                                                                               List<Group> groups);
 
     List<Event> findAllByGroupInOrderByDateAsc(List<Group> groups);
+
+    List<Event> findAllByGroupIdInOrderByDateAsc(List<Long> groups);
+
 }

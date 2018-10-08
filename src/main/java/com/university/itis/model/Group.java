@@ -4,8 +4,6 @@ package com.university.itis.model;
 import com.university.itis.model.common.AbstractEntity;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.search.annotations.*;
-import org.hibernate.search.annotations.Index;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -13,7 +11,7 @@ import java.util.Set;
 @DynamicInsert
 @DynamicUpdate
 @Entity
-@Table(name = "group")
+@Table(name = "groups")
 //@Indexed
 public class Group extends AbstractEntity {
 
@@ -25,10 +23,11 @@ public class Group extends AbstractEntity {
     @Lob
     private String info;
     @ManyToOne
+//    @JoinColumn(name = "parent", )
     private Group parent;
     @ManyToOne
     private User admin;
-    @OneToMany(mappedBy = "parent", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "parent", fetch = FetchType.EAGER, orphanRemoval = true)
     private Set<Group> children;
 
     public Set<Group> getChildren() {

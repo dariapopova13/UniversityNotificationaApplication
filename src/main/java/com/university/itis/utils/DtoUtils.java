@@ -1,6 +1,9 @@
 package com.university.itis.utils;
 
-import com.university.itis.dto.*;
+import com.university.itis.dto.DocumentDto;
+import com.university.itis.dto.EventDto;
+import com.university.itis.dto.GroupDto;
+import com.university.itis.dto.UserDto;
 import com.university.itis.model.*;
 import com.university.itis.repository.DocumentRepository;
 import com.university.itis.repository.EventRepository;
@@ -35,14 +38,15 @@ public class DtoUtils {
         group.setInfo(dto.getInfo());
         group.setName(dto.getName());
 
-        if (dto.getUser() != null)
+        if (dto.getUser() != null && dto.getUser().getId() != null)
             group.setUser(toEntity(dto.getUser()));
-        if (dto.getParent() != null) {
-            Group parent = new Group();
-            parent.setId(dto.getParent().getId());
-            group.setParent(parent);
+        if (dto.getParent() != null && dto.getParent().getId() != null) {
+//            Group parent = new Group();
+//            parent.setId(dto.getParent().getId());
+//            group.setParent(parent);
+            group.setParent(groupRepository.findOne(dto.getParent().getId()));
         }
-        if (dto.getAdmin() != null) {
+        if (dto.getAdmin() != null && dto.getAdmin().getId() != null) {
             group.setAdmin(userRepository.findOne(dto.getAdmin().getId()));
         }
         return group;
@@ -72,8 +76,8 @@ public class DtoUtils {
         event.setTitle(dto.getTitle());
         event.setText(dto.getText());
 
-        if (dto.getGroup() != null) {
-            event.setGroup(toEntity((GroupDto) dto.getGroup()));
+        if (dto.getGroup() != null &&dto.getGroup().getId() != null  ) {
+            event.setGroup(groupRepository.findOne(dto.getGroup().getId()));
         }
         if (dto.getDocuments() != null) {
             event.setDocuments(

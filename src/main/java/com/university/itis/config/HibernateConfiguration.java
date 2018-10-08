@@ -88,7 +88,7 @@ public class HibernateConfiguration {
         Properties properties = new Properties();
         properties.put(AvailableSettings.DIALECT, PostgreSQL95Dialect.class);
         properties.put(AvailableSettings.SHOW_SQL, true);
-        properties.put(AvailableSettings.HBM2DDL_AUTO, "update");
+//        properties.put(AvailableSettings.HBM2DDL_AUTO, "update");
 //        properties.put(AvailableSettings.HBM2DDL_AUTO, "create");
         properties.put(AvailableSettings.FORMAT_SQL, true);
         properties.put(AvailableSettings.ENABLE_LAZY_LOAD_NO_TRANS, true);

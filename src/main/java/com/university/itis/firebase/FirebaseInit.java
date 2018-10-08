@@ -12,17 +12,17 @@ import java.io.IOException;
 public class FirebaseInit {
 
 
-//    @PostConstruct
-//    public void firebase() throws IOException {
-//       String credentialFile = "/itisapp-1522147861835-firebase-adminsdk-boglk-f45cb10126.json";
-//        FirebaseOptions options = new FirebaseOptions.Builder()
-//                .setCredentials(GoogleCredentials.fromStream(
-//                        this.getClass().getResourceAsStream(credentialFile)))
-//                .build();
-//
-//        try {
-//            FirebaseApp.initializeApp(options);
-//        } catch (Exception e) {
-//        }
-//    }
+    @PostConstruct
+    public void firebase() throws IOException {
+       String credentialFile = "/UniversityNotificationApp-52af0475afe4.json";
+        FirebaseOptions options = new FirebaseOptions.Builder()
+                .setCredentials(GoogleCredentials.fromStream(
+                        this.getClass().getResourceAsStream(credentialFile)))
+                .build();
+
+        try {
+            FirebaseApp.initializeApp(options);
+        } catch (Exception e) {
+        }
+    }
 }

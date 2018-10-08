@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class GroupDto extends SimpleGroupDto {
 
     private SimpleGroupDto parent;
-    private List<SimpleGroupDto> children;
+    private List<GroupDto> children;
 
     public GroupDto(Group group) {
         super(group);
@@ -19,7 +19,7 @@ public class GroupDto extends SimpleGroupDto {
         if (group.getChildren() != null)
             this.children = group.getChildren()
                     .stream()
-                    .map(SimpleGroupDto::new)
+                    .map(GroupDto::new)
                     .collect(Collectors.toList());
 
     }
@@ -27,12 +27,8 @@ public class GroupDto extends SimpleGroupDto {
     public GroupDto() {
     }
 
-    public List<SimpleGroupDto> getChildren() {
+    public List<GroupDto> getChildren() {
         return children;
-    }
-
-    public void setChildren(List<SimpleGroupDto> children) {
-        this.children = children;
     }
 
     public SimpleGroupDto getParent() {
@@ -41,5 +37,9 @@ public class GroupDto extends SimpleGroupDto {
 
     public void setParent(SimpleGroupDto parent) {
         this.parent = parent;
+    }
+
+    public void setChildren(List<GroupDto> children) {
+        this.children = children;
     }
 }

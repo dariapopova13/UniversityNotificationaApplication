@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             mailService.sendConfirmationMail(user, password);
             return new UserDto(user);
         }
-        return null;
+        return new UserDto(user);
     }
 
 
